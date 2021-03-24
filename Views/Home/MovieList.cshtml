@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Movie List";
+}
+
+@model MovieListViewModel
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr><th>Category</th><th>Title</th><th>Year</th><th>Director</th><th>Rating</th><th>Edited?</th><th>Lent To</th><th>Notes</th><th></th><th></th></tr>
+        </thead>
+
+        <tbody>
+            @foreach (var x in Model.Movies)
+            {
+                <partial name="MovieSummary" model="x" />
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model MovieModel 
+
+@if (Model.Title == "Independence Day")
+{
+
+}
+else
+{
+    <tr>
+        <td class="text-left">@Model.Category</td>
+        <td class="text-left">@Model.Title</td>
+        <td class="text-left">@Model.Year</td>
+        <td class="text-left">@Model.Director</td>
+        <td class="text-left">@Model.Rating</td>
+        <td class="text-left">@Model.Edited</td>
+        <td class="text-left">@Model.LentTo</td>
+        <td class="text-left">@Model.Notes</td>
+        <td class="text-center">
+            <form asp-action="MovieList" method="post">
+                <input type="hidden" name="MovieID" value="@Model.MovieID" />
+                <input type="hidden" name="controllerAction" value="remove" />
+                <button type="submit" class="btn btn-sm btn-danger">
+                    Remove
+                </button>
+            </form>
+        </td>
+        <td class="text-center">
+            <form asp-action="MovieList" method="post">
+                <input type="hidden" name="MovieID" value="@Model.MovieID" />
+                <input type="hidden" name="controllerAction" value="edit" />
+                <button type="submit" class="btn btn-sm btn-danger">
+                    Edit
+                </button>
+            </form>
+        </td>
+</tr>
+}
