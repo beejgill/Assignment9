@@ -41,7 +41,7 @@ namespace Assignment3.Controllers
         [HttpPost]
         public IActionResult MovieForm(MovieModel movie)
         {
-            //TempStorage.AddMovie(movie);
+            // saves the movie into the database from the form
             context.Movies.Add(movie);
             context.SaveChanges();
             return View();
@@ -53,16 +53,15 @@ namespace Assignment3.Controllers
             {
                 Movies = context.Movies
             });
-            //return View(TempStorage.Movies);
         }
 
         [HttpPost]
         public IActionResult MovieList(int MovieID, string controllerAction)
         {
-            //var movie = context.Movies.Find(MovieID);
-
+            // decides based on which button was pressed in the view if it should edit or remove
             if(controllerAction == "remove")
             {
+                // finds the movie based on the ID and removes it from the database
                 var movie = context.Movies.Find(MovieID);
                 context.Movies.Remove(movie);
                 context.SaveChanges();
@@ -73,6 +72,7 @@ namespace Assignment3.Controllers
             }
             else if (controllerAction == "edit")
             {
+                // finds the movie based on the ID and sends it to the EditList view where the user will be able to edit its info
                 var movie = context.Movies.Find(MovieID);
                 return View("EditList", movie);
             }
@@ -87,6 +87,7 @@ namespace Assignment3.Controllers
         [HttpPost]
         public IActionResult EditList(MovieModel movie, int MovieID)
         {
+            // updates the movie in the database with the new info passed in from the user through the form
             var movieToEdit = context.Movies.Find(MovieID);
             context.Movies.Remove(movieToEdit);
             context.Movies.Add(movie);
